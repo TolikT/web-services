@@ -5,15 +5,15 @@
  */
 package com.tikhoa.soap.standalone;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-public class Person {
+public class Person implements Serializable{
 
     private String name;
     private String surname;
-    private int age;
+    private Integer age;
     private String contactDate;
-    private boolean isEmployee;
+    private Boolean isEmployee;
 
     public Person() {
     }
@@ -34,11 +34,11 @@ public class Person {
         return surname;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public boolean getIsEmployee() {
+    public Boolean getIsEmployee() {
         return isEmployee;
     }
 
@@ -54,11 +54,11 @@ public class Person {
         this.surname = surname;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public void setIsEmployee(boolean isEmployee) {
+    public void setIsEmployee(Boolean isEmployee) {
         this.isEmployee = isEmployee;
     }
 

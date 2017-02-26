@@ -17,11 +17,11 @@ import java.sql.Date;
 
 public class PostgreSQLDAO {
 
-    public List<Person> getPersons() {
+    public List<Person> getPersons(String condition) {
         List<Person> persons = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from persons");
+            ResultSet rs = stmt.executeQuery(String.format("select * from persons %s", condition));
 
             while (rs.next()) {
                 String name = rs.getString("name");
