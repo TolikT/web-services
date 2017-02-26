@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Date;
 
 public class PostgreSQLDAO {
 
@@ -26,8 +27,11 @@ public class PostgreSQLDAO {
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 int age = rs.getInt("age");
+                boolean isEmployee = rs.getBoolean("is_employee");
+                String contactDate = rs.getDate("contact_date").toString();
+                                
 
-                Person person = new Person(name, surname, age);
+                Person person = new Person(name, surname, age, isEmployee, contactDate);
                 persons.add(person);
             }
         } catch (SQLException ex) {

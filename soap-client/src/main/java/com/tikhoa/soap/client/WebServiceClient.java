@@ -17,7 +17,8 @@ public class WebServiceClient {
         List<Person> persons = personService.getPersonWebServicePort().getPersons();
         for (Person person : persons) {
             System.out.println("name: " + person.getName()
-                    + ", surname: " + person.getSurname() + ", age: " + person.getAge());
+                    + ", surname: " + person.getSurname() + ", age: " + person.getAge()
+                    + ", isEmployee: " + String.valueOf(person.getIsEmployee()) + ", contactDate: " + person.getContactDate());
         }
         System.out.println("Total persons: " + persons.size());
     }
