@@ -2,7 +2,33 @@
 
 <xs:element name="getPersons" type="tns:getPersons"></xs:element>
 
+<xs:element name="getPersonsByParameters" type="tns:getPersonsByParameters"></xs:element>
+
+<xs:element name="getPersonsByParametersResponse" type="tns:getPersonsByParametersResponse"></xs:element>
+
 <xs:element name="getPersonsResponse" type="tns:getPersonsResponse"></xs:element>
+
+<xs:complexType name="getPersonsByParameters">
+<xs:sequence>
+<xs:element name="arg0" type="tns:person" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="person">
+<xs:sequence>
+<xs:element name="age" type="xs:int" minOccurs="0"></xs:element>
+<xs:element name="contactDate" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="isEmployee" type="xs:boolean" minOccurs="0"></xs:element>
+<xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="surname" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPersonsByParametersResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:person" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="getPersons">
 <xs:sequence></xs:sequence>
@@ -11,16 +37,6 @@
 <xs:complexType name="getPersonsResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:person" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="person">
-<xs:sequence>
-<xs:element name="age" type="xs:int"></xs:element>
-<xs:element name="contactDate" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="isEmployee" type="xs:boolean"></xs:element>
-<xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="surname" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
