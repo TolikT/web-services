@@ -10,20 +10,60 @@
 <message name="getPersonsResponse">
 <part name="parameters" element="tns:getPersonsResponse"></part>
 </message>
+<message name="insertPerson">
+<part name="parameters" element="tns:insertPerson"></part>
+</message>
+<message name="insertPersonResponse">
+<part name="parameters" element="tns:insertPersonResponse"></part>
+</message>
+<message name="updatePerson">
+<part name="parameters" element="tns:updatePerson"></part>
+</message>
+<message name="updatePersonResponse">
+<part name="parameters" element="tns:updatePersonResponse"></part>
+</message>
+<message name="deletePerson">
+<part name="parameters" element="tns:deletePerson"></part>
+</message>
+<message name="deletePersonResponse">
+<part name="parameters" element="tns:deletePersonResponse"></part>
+</message>
 <message name="getPersonsByParameters">
 <part name="parameters" element="tns:getPersonsByParameters"></part>
 </message>
 <message name="getPersonsByParametersResponse">
 <part name="parameters" element="tns:getPersonsByParametersResponse"></part>
 </message>
+<message name="getId">
+<part name="parameters" element="tns:getId"></part>
+</message>
+<message name="getIdResponse">
+<part name="parameters" element="tns:getIdResponse"></part>
+</message>
 <portType name="PersonWebService">
 <operation name="getPersons">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsRequest" message="tns:getPersons"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsResponse" message="tns:getPersonsResponse"></output>
 </operation>
+<operation name="insertPerson">
+<input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/insertPersonRequest" message="tns:insertPerson"></input>
+<output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/insertPersonResponse" message="tns:insertPersonResponse"></output>
+</operation>
+<operation name="updatePerson">
+<input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/updatePersonRequest" message="tns:updatePerson"></input>
+<output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/updatePersonResponse" message="tns:updatePersonResponse"></output>
+</operation>
+<operation name="deletePerson">
+<input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/deletePersonRequest" message="tns:deletePerson"></input>
+<output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/deletePersonResponse" message="tns:deletePersonResponse"></output>
+</operation>
 <operation name="getPersonsByParameters">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersRequest" message="tns:getPersonsByParameters"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersResponse" message="tns:getPersonsByParametersResponse"></output>
+</operation>
+<operation name="getId">
+<input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getIdRequest" message="tns:getId"></input>
+<output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getIdResponse" message="tns:getIdResponse"></output>
 </operation>
 </portType>
 <binding name="PersonWebServicePortBinding" type="tns:PersonWebService">
@@ -37,7 +77,43 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
+<operation name="insertPerson">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="updatePerson">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="deletePerson">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
 <operation name="getPersonsByParameters">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getId">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

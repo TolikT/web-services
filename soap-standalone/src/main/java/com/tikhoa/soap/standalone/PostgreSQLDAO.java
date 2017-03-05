@@ -198,6 +198,7 @@ public class PostgreSQLDAO {
             result = 1;
         } catch (ParseException ex) {
             Logger.getLogger(PostgreSQLDAO.class.getName()).log(Level.SEVERE, null, ex);
+            result = 1;
         }
         return result;
     }
