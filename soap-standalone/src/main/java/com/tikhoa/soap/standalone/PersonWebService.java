@@ -19,62 +19,46 @@ public class PersonWebService {
     @WebMethod(operationName = "getPersons")
     public List<Person> getPersons() {
         PostgreSQLDAO dao = new PostgreSQLDAO();
-        List<Person> persons = dao.getPersons("");
+        List<Person> persons = dao.getPersons();
         return persons;
+    }
+    
+    @WebMethod(operationName = "insertPerson")
+    public int insertPerson(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
+        Person person = new Person(name, surname, age, isEmployee, contactDate);
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.insertPerson(person);
+        return exitStatus;
+    }
+    
+    @WebMethod(operationName = "updatePerson")
+public int updatePerson(String name, String surname, Integer age, Boolean isEmployee, String contactDate, Integer id) {
+        Person person = new Person(name, surname, age, isEmployee, contactDate);
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.updatePerson(id, name, surname, age, isEmployee, contactDate);
+        return exitStatus;
+    }
+    
+    @WebMethod(operationName = "deletePerson")
+    public int deletePerson(Integer id) {
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.deletePerson(id);
+        return exitStatus;
     }
 
     @WebMethod(operationName = "getPersonsByParameters")
-    public List<Person> getPersonsByParameters(Person params) {
-
-        String condition = "where ";
-
-        Field[] fields = params.getClass().getDeclaredFields();
-        for (Field f : fields) {
-            try {
-                f.setAccessible(true);
-                Class t = f.getType();
-                Object v = f.get(params);
-                String n = f.getName();
-                if (!t.isPrimitive() && v != null && !v.toString().equals("")) // found not default value
-                {
-                    condition += String.format("%s=\'%s\' and ", n, v);
-                }
-            } catch (IllegalArgumentException ex) {
-                Logger.getLogger(PersonWebService.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(PersonWebService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        /*if (params.getAge () 
-        != null) {
-            condition += "age=\'" + params.getAge().toString() + "\' and ";
-    }
-
-    if (params.getName () 
-        != null) {
-            condition += "name=\'" + params.getName().toString() + "\' and ";
-    }
-
-    if (params.getSurname () 
-        != null) {
-            condition += "surname=\'" + params.getSurname().toString() + "\' and ";
-    }
-
-    if (params.getIsEmployee () 
-        != null) {
-            condition += "is_employee=\'" + params.getIsEmployee().toString().toLowerCase() + "\' and ";
-    }
-
-    if (params.getContactDate () 
-        != null) {
-            condition += "contact_date=\'" + params.getContactDate().toString() + "\' and ";
-    }*/
-        condition = condition.substring(0, condition.length() - 4);
-
-        System.out.println(condition);
+    public List<Person> getPersonsByParameters(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
+        Person person = new Person(name, surname, age, isEmployee, contactDate);
         PostgreSQLDAO dao = new PostgreSQLDAO();
-        List<Person> persons = dao.getPersons(condition);
+        List<Person> persons = dao.getPersonsByParameters(person);
         return persons;
+    }
+    
+    @WebMethod(operationName = "getId")
+    public Integer getId(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
+        Person person = new Person(name, surname, age, isEmployee, contactDate);
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        Integer id = dao.getId(person);
+        return id;
     }
 }

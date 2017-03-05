@@ -22,13 +22,13 @@ public class WebServiceClient {
         for (Person person : persons) {
             System.out.println("name: " + person.getName()
                     + ", surname: " + person.getSurname() + ", age: " + person.getAge()
-                    + ", isEmployee: " + String.valueOf(person.getIsEmployee()) + ", contactDate: " + person.getContactDate());
+                    + ", isEmployee: " + String.valueOf(person.isIsEmployee()) + ", contactDate: " + person.getContactDate());
         }
         System.out.println("Total persons: " + persons.size());
         for (Person person : searchPersons) {
             System.out.println("name: " + person.getName()
                     + ", surname: " + person.getSurname() + ", age: " + person.getAge()
-                    + ", isEmployee: " + String.valueOf(person.getIsEmployee()) + ", contactDate: " + person.getContactDate());
+                    + ", isEmployee: " + String.valueOf(person.isIsEmployee()) + ", contactDate: " + person.getContactDate());
         }
         System.out.println("Total found persons: " + searchPersons.size());
         

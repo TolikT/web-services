@@ -18,7 +18,7 @@ public class Person implements Serializable{
     public Person() {
     }
 
-    public Person(String name, String surname, int age, boolean isEmployee, String contactDate) {
+    public Person(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
         this.name = name;
         this.surname = surname;
         this.age = age;
