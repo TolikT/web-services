@@ -5,12 +5,15 @@
  */
 package com.tikhoa.soap.standalone;
 
+import com.tikhoa.soap.errors.IllegalNameException;
+import com.tikhoa.soap.errors.PersonServiceFault;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService(serviceName = "PersonService")
@@ -22,7 +25,7 @@ public class PersonWebService {
         List<Person> persons = dao.getPersons();
         return persons;
     }
-    
+
     @WebMethod(operationName = "insertPerson")
     public int insertPerson(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
         Person person = new Person(name, surname, age, isEmployee, contactDate);
@@ -30,15 +33,15 @@ public class PersonWebService {
         int exitStatus = dao.insertPerson(person);
         return exitStatus;
     }
-    
+
     @WebMethod(operationName = "updatePerson")
-public int updatePerson(String name, String surname, Integer age, Boolean isEmployee, String contactDate, Integer id) {
+    public int updatePerson(String name, String surname, Integer age, Boolean isEmployee, String contactDate, Integer id) {
         Person person = new Person(name, surname, age, isEmployee, contactDate);
         PostgreSQLDAO dao = new PostgreSQLDAO();
         int exitStatus = dao.updatePerson(id, name, surname, age, isEmployee, contactDate);
         return exitStatus;
     }
-    
+
     @WebMethod(operationName = "deletePerson")
     public int deletePerson(Integer id) {
         PostgreSQLDAO dao = new PostgreSQLDAO();
@@ -47,13 +50,25 @@ public int updatePerson(String name, String surname, Integer age, Boolean isEmpl
     }
 
     @WebMethod(operationName = "getPersonsByParameters")
-    public List<Person> getPersonsByParameters(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
+    public List<Person> getPersonsByParameters(
+            @WebParam(name = "personName") String name,
+            @WebParam(name = "personSurname") String surname,
+            @WebParam(name = "personAge") Integer age,
+            @WebParam(name = "personIsEmployee") Boolean isEmployee,
+            @WebParam(name = "personContactDate") String contactDate
+    ) throws IllegalNameException {
+        if (name == null || name.trim().isEmpty()) {
+            PersonServiceFault fault = PersonServiceFault.defaultInstance();
+            throw new IllegalNameException("personName is not specified", fault);
+        }
+
         Person person = new Person(name, surname, age, isEmployee, contactDate);
+
         PostgreSQLDAO dao = new PostgreSQLDAO();
         List<Person> persons = dao.getPersonsByParameters(person);
         return persons;
     }
-    
+
     @WebMethod(operationName = "getId")
     public Integer getId(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
         Person person = new Person(name, surname, age, isEmployee, contactDate);

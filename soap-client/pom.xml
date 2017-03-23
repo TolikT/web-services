@@ -79,6 +79,24 @@
                         <id>wsimport-generate-PersonService_2</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PersonService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.tikhoa.soap.client</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:8080/PersonService?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PersonService_3.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PersonService_3</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>

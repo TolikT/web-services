@@ -34,6 +34,9 @@
 <message name="getPersonsByParametersResponse">
 <part name="parameters" element="tns:getPersonsByParametersResponse"></part>
 </message>
+<message name="IllegalNameException">
+<part name="fault" element="tns:IllegalNameException"></part>
+</message>
 <message name="getId">
 <part name="parameters" element="tns:getId"></part>
 </message>
@@ -60,6 +63,7 @@
 <operation name="getPersonsByParameters">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersRequest" message="tns:getPersonsByParameters"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersResponse" message="tns:getPersonsByParametersResponse"></output>
+<fault message="tns:IllegalNameException" name="IllegalNameException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParameters/Fault/IllegalNameException"></fault>
 </operation>
 <operation name="getId">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getIdRequest" message="tns:getId"></input>
@@ -112,6 +116,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="IllegalNameException">
+<soap:fault name="IllegalNameException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="getId">
 <soap:operation soapAction=""></soap:operation>
