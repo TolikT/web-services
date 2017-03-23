@@ -16,65 +16,11 @@ import javax.jws.WebService;
 @WebService(serviceName = "PersonService")
 public class PersonWebService {
 
-    @WebMethod(operationName = "getPersons")
-    public List<Person> getPersons() {
+    @WebMethod(operationName = "getPersonsCommon")
+    public List<Person> getPersonsCommon(String name, String surname, Integer age, Boolean isEmployee, String contactDate) {
+        Person person = new Person(name, surname, age, isEmployee, contactDate);
         PostgreSQLDAO dao = new PostgreSQLDAO();
-        List<Person> persons = dao.getPersons("");
-        return persons;
-    }
-
-    @WebMethod(operationName = "getPersonsByParameters")
-    public List<Person> getPersonsByParameters(Person params) {
-
-        String condition = "where ";
-
-        Field[] fields = params.getClass().getDeclaredFields();
-        for (Field f : fields) {
-            try {
-                f.setAccessible(true);
-                Class t = f.getType();
-                Object v = f.get(params);
-                String n = f.getName();
-                if (!t.isPrimitive() && v != null && !v.toString().equals("")) // found not default value
-                {
-                    condition += String.format("%s=\'%s\' and ", n, v);
-                }
-            } catch (IllegalArgumentException ex) {
-                Logger.getLogger(PersonWebService.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(PersonWebService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        /*if (params.getAge () 
-        != null) {
-            condition += "age=\'" + params.getAge().toString() + "\' and ";
-    }
-
-    if (params.getName () 
-        != null) {
-            condition += "name=\'" + params.getName().toString() + "\' and ";
-    }
-
-    if (params.getSurname () 
-        != null) {
-            condition += "surname=\'" + params.getSurname().toString() + "\' and ";
-    }
-
-    if (params.getIsEmployee () 
-        != null) {
-            condition += "is_employee=\'" + params.getIsEmployee().toString().toLowerCase() + "\' and ";
-    }
-
-    if (params.getContactDate () 
-        != null) {
-            condition += "contact_date=\'" + params.getContactDate().toString() + "\' and ";
-    }*/
-        condition = condition.substring(0, condition.length() - 4);
-
-        System.out.println(condition);
-        PostgreSQLDAO dao = new PostgreSQLDAO();
-        List<Person> persons = dao.getPersons(condition);
+        List<Person> persons = dao.getPersonsByParameters(person);
         return persons;
     }
 }
