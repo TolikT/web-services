@@ -14,58 +14,19 @@ import javax.ws.rs.core.MediaType;
 public class PersonResource {
 
     @GET
-    public List<Person> getPersonsByName(@QueryParam("name") String name) {
+    public List<Person> getPersons() {
+        return new PostgreSQLDAO().getPersonsByParameters(null);
+    }
+
+    @Path("/{name}")
+    @GET
+    public List<Person> getPersonsByName(@PathParam("name") String name) throws
+            IllegalNameException {
+        if (name == null || name.trim().isEmpty()) {
+            throw IllegalNameException.DEFAULT_INSTANCE;
+        }
         Person person = new Person();
         person.setName(name);
-        List<Person> persons = new PostgreSQLDAO().getPersonsByParameters(person);
-        return persons;
-    }
-
-    @PUT
-    public int insertPerson(
-            @QueryParam("name") String name,
-            @QueryParam("surname") String surname,
-            @QueryParam("age") Integer age,
-            @QueryParam("isEmployee") Boolean isEmployee,
-            @QueryParam("contactDate") String contactDate) {
-        Person person = new Person();
-        if (name != null) {
-            person.setName(name);
-        }
-        if (surname != null) {
-            person.setSurname(surname);
-        }
-        if (age != null) {
-            person.setAge(age);
-        }
-        if (isEmployee != null) {
-            person.setIsEmployee(isEmployee);
-        }
-        if (contactDate != null) {
-            person.setContactDate(contactDate);
-        }
-        PostgreSQLDAO dao = new PostgreSQLDAO();
-        int exitStatus = dao.insertPerson(person);
-        return exitStatus;
-    }
-
-    @POST
-    public int updatePerson(
-            @QueryParam("id") Integer id,
-            @QueryParam("name") String name,
-            @QueryParam("surname") String surname,
-            @QueryParam("age") Integer age,
-            @QueryParam("isEmployee") Boolean isEmployee,
-            @QueryParam("contactDate") String contactDate) {
-        PostgreSQLDAO dao = new PostgreSQLDAO();
-        int exitStatus = dao.updatePerson(id, name, surname, age, isEmployee, contactDate);
-        return exitStatus;
-    }
-
-    @DELETE
-    public int deletePerson(@QueryParam("id") Integer id) {
-        PostgreSQLDAO dao = new PostgreSQLDAO();
-        int exitStatus = dao.deletePerson(id);
-        return exitStatus;
+        return new PostgreSQLDAO().getPersonsByParameters(person);
     }
 }
