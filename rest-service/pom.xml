@@ -25,6 +25,18 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.2-1003-jdbc4</version>
+        </dependency>     
+        
+        <!-- http://stackoverflow.com/questions/13108161/a-message-body-writer-for-java-class-not-found --> 
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <version>2.15</version>
         </dependency>        
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.15</version>    
+        </dependency>   
     </dependencies>
 </project>

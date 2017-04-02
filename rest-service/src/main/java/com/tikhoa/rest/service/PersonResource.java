@@ -21,9 +21,51 @@ public class PersonResource {
         return persons;
     }
 
-    /*@GET
-    public List<Person> getPersons() {
-        List<Person> persons = new PostgreSQLDAO().getPersons();
-        return persons;
-    }*/
+    @PUT
+    public int insertPerson(
+            @QueryParam("name") String name,
+            @QueryParam("surname") String surname,
+            @QueryParam("age") Integer age,
+            @QueryParam("isEmployee") Boolean isEmployee,
+            @QueryParam("contactDate") String contactDate) {
+        Person person = new Person();
+        if (name != null) {
+            person.setName(name);
+        }
+        if (surname != null) {
+            person.setSurname(surname);
+        }
+        if (age != null) {
+            person.setAge(age);
+        }
+        if (isEmployee != null) {
+            person.setIsEmployee(isEmployee);
+        }
+        if (contactDate != null) {
+            person.setContactDate(contactDate);
+        }
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.insertPerson(person);
+        return exitStatus;
+    }
+
+    @POST
+    public int updatePerson(
+            @QueryParam("id") Integer id,
+            @QueryParam("name") String name,
+            @QueryParam("surname") String surname,
+            @QueryParam("age") Integer age,
+            @QueryParam("isEmployee") Boolean isEmployee,
+            @QueryParam("contactDate") String contactDate) {
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.updatePerson(id, name, surname, age, isEmployee, contactDate);
+        return exitStatus;
+    }
+
+    @DELETE
+    public int deletePerson(@QueryParam("id") Integer id) {
+        PostgreSQLDAO dao = new PostgreSQLDAO();
+        int exitStatus = dao.deletePerson(id);
+        return exitStatus;
+    }
 }
