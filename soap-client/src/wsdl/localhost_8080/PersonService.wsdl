@@ -10,6 +10,9 @@
 <message name="getPersonsResponse">
 <part name="parameters" element="tns:getPersonsResponse"></part>
 </message>
+<message name="AuthException">
+<part name="fault" element="tns:AuthException"></part>
+</message>
 <message name="insertPerson">
 <part name="parameters" element="tns:insertPerson"></part>
 </message>
@@ -47,27 +50,33 @@
 <operation name="getPersons">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsRequest" message="tns:getPersons"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsResponse" message="tns:getPersonsResponse"></output>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersons/Fault/AuthException"></fault>
 </operation>
 <operation name="insertPerson">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/insertPersonRequest" message="tns:insertPerson"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/insertPersonResponse" message="tns:insertPersonResponse"></output>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/insertPerson/Fault/AuthException"></fault>
 </operation>
 <operation name="updatePerson">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/updatePersonRequest" message="tns:updatePerson"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/updatePersonResponse" message="tns:updatePersonResponse"></output>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/updatePerson/Fault/AuthException"></fault>
 </operation>
 <operation name="deletePerson">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/deletePersonRequest" message="tns:deletePerson"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/deletePersonResponse" message="tns:deletePersonResponse"></output>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/deletePerson/Fault/AuthException"></fault>
 </operation>
 <operation name="getPersonsByParameters">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersRequest" message="tns:getPersonsByParameters"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParametersResponse" message="tns:getPersonsByParametersResponse"></output>
 <fault message="tns:IllegalNameException" name="IllegalNameException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParameters/Fault/IllegalNameException"></fault>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getPersonsByParameters/Fault/AuthException"></fault>
 </operation>
 <operation name="getId">
 <input wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getIdRequest" message="tns:getId"></input>
 <output wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getIdResponse" message="tns:getIdResponse"></output>
+<fault message="tns:AuthException" name="AuthException" wsam:Action="http://standalone.soap.tikhoa.com/PersonWebService/getId/Fault/AuthException"></fault>
 </operation>
 </portType>
 <binding name="PersonWebServicePortBinding" type="tns:PersonWebService">
@@ -80,6 +89,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="insertPerson">
 <soap:operation soapAction=""></soap:operation>
@@ -89,6 +101,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="updatePerson">
 <soap:operation soapAction=""></soap:operation>
@@ -98,6 +113,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="deletePerson">
 <soap:operation soapAction=""></soap:operation>
@@ -107,6 +125,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="getPersonsByParameters">
 <soap:operation soapAction=""></soap:operation>
@@ -119,6 +140,9 @@
 <fault name="IllegalNameException">
 <soap:fault name="IllegalNameException" use="literal"></soap:fault>
 </fault>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="getId">
 <soap:operation soapAction=""></soap:operation>
@@ -128,6 +152,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="AuthException">
+<soap:fault name="AuthException" use="literal"></soap:fault>
+</fault>
 </operation>
 </binding>
 <service name="PersonService">

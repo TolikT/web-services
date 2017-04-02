@@ -16,5 +16,6 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_1>http://localhost:8080/PersonService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_1>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_2>http://localhost:8080/PersonService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_2>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_3>http://localhost:8080/PersonService?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_3>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_4>http://localhost:8080/PersonService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_PersonService_5f_4>
     </properties>
 </project-shared-configuration>
